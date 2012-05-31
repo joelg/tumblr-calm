@@ -60,7 +60,10 @@
     });
     </script>
     {/block:IndexPage}
-	<style type="text/css" media="screen">
+	<style type="text/css" media="screen">	
+body {
+
+}
 div.date {
     height: 53px;
     padding-top: 28px;
@@ -122,12 +125,13 @@ a.rss-count {
     
 }
 div#header-anchor {
-    position: relative;
+    position: absolute;
 	left: -265px;
 	margin-bottom: 30px;
 	top: 20px;
     width: 1012px;
     height: 50px;
+	margin-top: 30px;
 }
 
 div#header-anchor a#headline {
@@ -171,7 +175,7 @@ div#header-anchor a img {
 
 div#frame {
 	position: relative;
-    padding-top: 30px;
+    padding-top: 80px;
 }
 
 div.title {
@@ -278,6 +282,11 @@ ul.share-buttons li {
 	margin-right: 5px;
 	width: 55px;
 }
+iframe.share-quote {
+	float: right;
+	position: relative;
+	top: 3px;
+}
 
 .facebook-share-button {
   width: 55px;
@@ -339,7 +348,7 @@ div#lessons-list ul li img {
 	margin-right: 5px;
 	border: 1px solid #666;
 }
-div#lessons-list h4 {
+div#lessons-list h3 {
 	clear: both;
 	padding-top: 20px;
 	margin: 0;
@@ -396,7 +405,7 @@ form#feedburner-email button {
 	  var js, fjs = d.getElementsByTagName(s)[0];
 	  if (d.getElementById(id)) return;
 	  js = d.createElement(s); js.id = id;
-	  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=275839979303";
+	  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=246556122112954";
 	  fjs.parentNode.insertBefore(js, fjs);
 	}(document, 'script', 'facebook-jssdk'));</script>
 <script type="text/javascript">var _kiq = _kiq || [];</script>
@@ -414,7 +423,7 @@ form#feedburner-email button {
         <div class='about-me'>
         <form id="feedburner-email" action="http://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open('http://feedburner.google.com/fb/a/mailverify?uri=joelis', 'popupwindow', 'scrollbars=yes,width=550,height=520');return true"><p><input type="text" placeholder="Subscribe via Email" name="email"/><input type="hidden" value="joelis" name="uri"/><input type="hidden" name="loc" value="en_US"/><button type="submit">Sign up</button></p></form>
       <ul class='subscribe-buttons'>
-          <li style="margin-bottom: 10px;"><a class="rss" target="_blank" href="http://feeds.feedburner.com/joelis" rel="alternate" type="application/rss+xml"><i></i>Subscribe with RSS</a><a class="rss-count" target="_blank" href="http://feeds.feedburner.com/joelis" rel="alternate" type="application/rss+xml"><i></i>676</a></li>
+          <li style="margin-bottom: 10px;"><a class="rss" target="_blank" href="http://feeds.feedburner.com/joelis" rel="alternate" type="application/rss+xml"><i></i>Subscribe with RSS</a><a class="rss-count" target="_blank" href="http://feeds.feedburner.com/joelis" rel="alternate" type="application/rss+xml"><i></i>775</a></li>
       	<li><a href="https://twitter.com/joelgascoigne" class="twitter-follow-button" data-show-count="true" data-lang="en">Follow @joelgascoigne</a>
       	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></li>
       	<li><iframe src="http://www.facebook.com/plugins/subscribe.php?href=https%3A%2F%2Fwww.facebook.com%2Fjoelg&amp;layout=button_count&amp;show_faces=false&amp;colorscheme=light&amp;font=lucida+grande&amp;width=230&amp;appId=103667826405103" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:230px; height:40px;" allowTransparency="true"></iframe></li>
