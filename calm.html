@@ -11,6 +11,7 @@
     {block:Description}
         <meta name="description" content="{MetaDescription}" />
     {/block:Description}
+	<meta property="fb:app_id" content="246556122112954"/>
     <title>
       {block:PostTitle}{PostTitle}{/block:PostTitle}{block:IndexPage}{Title}{/block:IndexPage}
     </title>
@@ -237,7 +238,10 @@ div.date-inner.fixed {
 	text-indent: -9999px !important;
 }
 .post ul {
- font-family: helvetica, verdana, arial, sans-serif;
+	font-family: helvetica, verdana, arial, sans-serif;
+	list-style-type: square;
+	font-weight: lighter;
+	color: #333;
 }
 
 ul.pages {
@@ -413,7 +417,7 @@ form#feedburner-email button {
     <div id='frame'>
         <div id="header-anchor">
         	<a id="headline" href="/">
-        		<img src="https://si0.twimg.com/profile_images/1395764787/joel-spain-avatar-buffer_normal.png">
+        		<img src="https://si0.twimg.com/profile_images/2274292341/ge0o5se0bxkg10pxgz5g_normal.png">
         		<h1>Joel Gascoigne</h1>
         		<p>Startups, life, learning and happiness</p>
         	</a>
@@ -423,10 +427,10 @@ form#feedburner-email button {
         <div class='about-me'>
         <form id="feedburner-email" action="http://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open('http://feedburner.google.com/fb/a/mailverify?uri=joelis', 'popupwindow', 'scrollbars=yes,width=550,height=520');return true"><p><input type="text" placeholder="Subscribe via Email" name="email"/><input type="hidden" value="joelis" name="uri"/><input type="hidden" name="loc" value="en_US"/><button type="submit">Sign up</button></p></form>
       <ul class='subscribe-buttons'>
-          <li style="margin-bottom: 10px;"><a class="rss" target="_blank" href="http://feeds.feedburner.com/joelis" rel="alternate" type="application/rss+xml"><i></i>Subscribe with RSS</a><a class="rss-count" target="_blank" href="http://feeds.feedburner.com/joelis" rel="alternate" type="application/rss+xml"><i></i>775</a></li>
+          <li style="margin-bottom: 10px;"><a class="rss" target="_blank" href="http://feeds.feedburner.com/joelis" rel="alternate" type="application/rss+xml"><i></i>Subscribe with RSS</a><a class="rss-count" target="_blank" href="http://feeds.feedburner.com/joelis" rel="alternate" type="application/rss+xml"><i></i>820</a></li>
       	<li><a href="https://twitter.com/joelgascoigne" class="twitter-follow-button" data-show-count="true" data-lang="en">Follow @joelgascoigne</a>
       	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></li>
-      	<li><iframe src="http://www.facebook.com/plugins/subscribe.php?href=https%3A%2F%2Fwww.facebook.com%2Fjoelg&amp;layout=button_count&amp;show_faces=false&amp;colorscheme=light&amp;font=lucida+grande&amp;width=230&amp;appId=103667826405103" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:230px; height:40px;" allowTransparency="true"></iframe></li>
+      	<li><div class="fb-subscribe" data-href="https://www.facebook.com/joelg" data-show-faces="true" data-width="230"></div></li>
       </ul>
       <ul class="pages">
             <li><a href="/lessons">lessons summary</a></li>
@@ -448,7 +452,7 @@ form#feedburner-email button {
             	<ul class="share-buttons">
             		<li><a href="http://twitter.com/share" class="twitter-share-button" data-text="{Title}" data-url="{Permalink}" data-count="vertical" data-via="joelgascoigne">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script></li>
             		<li><a href="http://bufferapp.com/add" class="buffer-add-button" data-text="{Title}" data-url="{Permalink}" data-count="vertical" data-via="joelgascoigne">Buffer</a><script type="text/javascript" src="http://static.bufferapp.com/js/button.js"></script></li>
-            		<li style="position: relative; bottom: 3px;"><div class="fb-like" data-href="{Permalink}" data-send="false" data-layout="box_count" data-width="55" data-height="65" data-show-faces="false"></div></li>
+            		<li style="position: relative; bottom: 3px;"><div class="fb-like" data-href="{Permalink}" data-send="false" data-layout="box_count" data-width="55" data-show-faces="false"></div></li>
             		<li style="display: inline-block; margin-left: -6px;"><div class="google-share-button" style="position: relative; bottom: 1px;"><g:plusone size="tall" href="{Permalink}"></g:plusone></div>
             	</ul>
             </div>
@@ -480,7 +484,7 @@ form#feedburner-email button {
 	        </div>
             {block:PermalinkPage}
             <div class='author-joel'>
-                <img src="https://si0.twimg.com/profile_images/1343773983/joel-spain-avatar_reasonably_small.png" />
+                <img src="https://si0.twimg.com/profile_images/2274292341/ge0o5se0bxkg10pxgz5g_reasonably_small.png" />
                 <div class='author-joel-bio'>Hi, I'm <a target="_blank" rel="author" href="http://joel.is/about">Joel</a>. I hope you enjoyed the post. I'm the Founder of <a target="_blank" href="http://bufferapp.com">Buffer</a>, a more effective way to post to Twitter and Facebook. I've found sharing my thoughts to be a great way to clear my mind, and to learn from others who comment. I'd love to hear from you in the comments.</div>
             </div>
             {/block:PermalinkPage}
