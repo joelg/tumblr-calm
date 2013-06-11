@@ -8,31 +8,54 @@
     <script type="text/javascript" src="http://static.tumblr.com/fw3zutj/mSMl1gdmi/newsies.js"></script>
 	<link rel="shortcut icon" href="{Favicon}">
     <link rel="alternate" type="application/rss+xml" href="http://feeds.feedburner.com/joelis">
-	<link href="//get.pictos.cc/fonts/2004/3" rel="stylesheet" type="text/css">
     {block:Description}
         <meta name="description" content="{MetaDescription}" />
     {/block:Description}
 	<meta property="fb:app_id" content="246556122112954"/>
+	<meta name="p:domain_verify" content="23380c917940c1f3b6215e024b90b3e4" />
+	<meta name="pocket-site-verification" content="2ba974bf7c8803b6c58661b4c348d7" />
     <title>
       {block:PostTitle}{PostTitle}{/block:PostTitle}{block:IndexPage}{Title}{/block:IndexPage}
     </title>
-    {block:PermalinkPage}
     <script type="text/javascript">
     $(function(){
+
+    	$.getScript('//platform.twitter.com/widgets.js', function() {
+            function trackSocialIntent(intent_event) {
+                if (!intent_event) { return; }
+                _gaq.push(['_trackSocial', 'twitter', intent_event.type]);
+            }
+            twttr.events.bind('click', trackSocialIntent);
+            twttr.events.bind('tweet', trackSocialIntent);
+            twttr.events.bind('retweet', trackSocialIntent);
+            twttr.events.bind('favorite', trackSocialIntent);
+            twttr.events.bind('follow', trackSocialIntent);
+        });
+
         $(window).scroll(function(){
-    		if($(window).scrollTop() > 160) $('.about-me, .date-inner').addClass('fixed');
+    		
+			if($(window).scrollTop() > 150) $('.about-me, .date-inner').addClass('fixed');
     		else $('.about-me, .date-inner').removeClass('fixed');
+
+			if($('input[name=lessons]').val() != "true")
+			{
+				if($(window).scrollTop() > 1200) $('#other-lessons').addClass('show');
+    			else $('#other-lessons').removeClass('show');
+			}
     	});
     });
     </script>
-    {/block:PermalinkPage}
     {block:IndexPage}
     <script type="text/javascript">
     $(function(){
+
+    	mixpanel.track_links("#other-lessons-link","Clicked Lessons Popup", {"page type" : "index"});
+    	mixpanel.track("Viewed Page", {"page type" : "index", 'page name' : document.title, 'url' : window.location.pathname});
+
         $(window).scroll(function(){
         	
             // first, for the about section
-            if($(window).scrollTop() > 160) $('.about-me').addClass('fixed');
+            if($(window).scrollTop() > 150) $('.about-me').addClass('fixed');
     		else $('.about-me').removeClass('fixed');
     
             // now for posts
@@ -40,12 +63,12 @@
             
                 var el = $(this);
                 
-                if($(window).scrollTop() > $(el).parent().parent().offset().top && $(window).scrollTop() <= ($(el).parent().parent().children('.meta').offset().top - 61))
+                if($(window).scrollTop() +10 > $(el).parent().parent().offset().top && $(window).scrollTop() <= ($(el).parent().parent().children('.meta').offset().top - 51))
                 {
                     $(el).addClass('fixed');
                     $(el).parent().removeClass('bottom');
                 }
-                else if($(window).scrollTop() > $(el).parent().parent().offset().top && $(window).scrollTop() > ($(el).parent().parent().children('.meta').offset().top -61))
+                else if($(window).scrollTop() +10 > $(el).parent().parent().offset().top && $(window).scrollTop() > ($(el).parent().parent().children('.meta').offset().top -51))
                 {
                     $(el).removeClass('fixed');
                     $(el).parent().addClass('bottom');
@@ -62,46 +85,61 @@
     });
     </script>
     {/block:IndexPage}
+    {block:PermalinkPage}
+    <script type="text/javascript">
+    $(function(){
+    	mixpanel.track_links("#other-lessons-link","Clicked Lessons Popup", {"page type" : "permalink"});
+    	mixpanel.track("Viewed Page", {"page type" : "permalink", 'page name' : document.title, 'url' : window.location.pathname});
+    });
+	</script>
+    {/block:PermalinkPage}
 	<style type="text/css" media="screen">	
 body {
-
+	border-top: 5px solid #36C;
+}
+a {
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
 }
 div.date {
     height: 53px;
-    padding-top: 28px;
+    padding-top: 18px;
     text-transform: none !important;
     font-weight: normal !important;
     font-size: 12px !important;
     text-align: left !important;
     position: absolute;
 	left: -265px;
-	border-top: 1px solid #E5E5E5;
 	top: -15px;
 	width: 245px;
 }
 div.date.bottom {
-    bottom: 15px;
+    bottom: 5px;
     top: auto;
     border-top: none;
 }
 a.rss {
-    border: 1px solid #DF912C;
+    border: 1px solid #E0AE6D;
 	padding: 2px;
 	font-size: 11px !important;
 	font-weight: bold;
 	color: #333 !important;
 	border-radius: 3px;
 	text-shadow: 0 1px 0 rgba(255, 255, 255, .5);
-	background-image: -webkit-gradient(linear,left top,left bottom,from(#FFCF6A),to(#FFA530));
-    background-image: -moz-linear-gradient(top,#FFCF6A,#FFA530);
-    background-image: -o-linear-gradient(top,#FFCF6A,#FFA530);
-    background-image: -ms-linear-gradient(top,#FFCF6A,#FFA530);
-    background-image: linear-gradient(top,#FFCF6A,#FFA530);
+	background-image: -webkit-gradient(linear,left top,left bottom,from(#FFEEC8),to(#FFBE6B));
+    background-image: -moz-linear-gradient(top,#FFEEC8,#FFBE6B);
+    background-image: -o-linear-gradient(top,#FFEEC8,#FFBE6B);
+    background-image: -ms-linear-gradient(top,#FFEEC8,#FFBE6B);
+    background-image: linear-gradient(top,#FFEEC8,#FFBE6B);
 	border-image: initial;
 	position: relative;
 	padding-left: 20px;
     font-family: helvetica, verdana, arial, sans-serif;
     text-decoration: none;
+    float: right;
+    height: 13px;
 }
 a.rss:hover {
 	border-color: #93601D;
@@ -120,12 +158,43 @@ a.rss-count {
     font-size: 11px;
     text-decoration: none;
     color: #333;
-    margin-left: 3px;
-    border: 1px solid #CCC;
+    margin-left: 5px;
+    border: 1px solid #aaa;
     padding: 2px;
     border-radius: 3px;
-    
 }
+a.rss-count:hover {
+	text-decoration: underline;
+}
+
+.arrow-box {
+	position: relative;
+	background: #ffffff;
+	border: 1px solid #aaaaaa;
+}
+.arrow-box:after, .arrow-box:before {
+	right: 100%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+.arrow-box:after {
+	border-right-color: #ffffff;
+	border-width: 3px;
+	top: 50%;
+	margin-top: -3px;
+}
+.arrow-box:before {
+	border-right-color: #aaaaaa;
+	border-width: 4px;
+	top: 50%;
+	margin-top: -4px;
+}
+
 div#header-anchor {
     position: absolute;
 	left: -265px;
@@ -143,25 +212,29 @@ div#header-anchor a#headline {
 	line-height:50px;
 	font-family: helvetica, verdana, arial, sans-serif;
 	display: block;
-	width: 310px;
+	width: 350px;
     float: left;
 }
 div#header-anchor p.description {
     float: right;
-    width: 250px;
+    width: 227px;
     font-family: helvetica, verdana, arial, sans-serif;
+	font-size: 13px;
+	line-height: 20px;
 }
 
 div#header-anchor h1 {
 	font-weight: lighter;
-	margin-bottom: 0;
-	font-size: 30px;
+	font-size: 35px;
 	position: relative;
-	top: -3px;
+	top: 0;
+	margin-bottom: 5px;
 }
 div#header-anchor p {
-	line-height: 22px;
+	line-height: 18px;
 	color: #666;
+	font-size: 15px;
+	font-weight: lighter;
 }
 div#header-anchor a:hover {
 	color: black;
@@ -169,6 +242,8 @@ div#header-anchor a:hover {
 div#header-anchor a img {
 	float:left;
 	margin-right: 10px;
+	border-radius: 5px;
+	width: 60px;
 }
 
 .hr {
@@ -186,8 +261,7 @@ div.title {
 	top: 144px;
 	right: -250px;
 	margin-left: 20px;
-	border-top: 1px solid #E5E5E5;
-	padding-top: 28px;
+	padding-top: 18px;
 }
 div.title .description {
 	text-align: left;
@@ -205,23 +279,146 @@ div.title ul.subscribe-buttons {
 div.title ul.subscribe-buttons li {
 	margin: 5px 0;
 }
+.fb-follow.fb_iframe_widget {
+	position: relative;
+	display: inline-block;
+	bottom: 3px;
+	margin-right: 15px;
+}
 div.about-me.fixed, div.date-inner.fixed {
     position: fixed;
 	width: 230px;
 	top: 16px;
 }
+div.about-me {
+	margin-top: 2px;
+}
 div.date-inner.fixed {
     width: 245px;
 }
-.post {
-    position: relative;
+
+div#other-lessons {
+	position: fixed;
+	bottom: -172px;
+	width: 225px;
+	border: 2px solid #E8E8E8;
+	border-bottom: none;
+	background-color: #FBFBFB;
+	padding: 10px;
+	height: 150px;
+	transition: bottom .2s linear;
+	-moz-transition: bottom .2s linear; /* Firefox 4 */
+	-webkit-transition: bottom .2s linear; /* Safari and Chrome */
+	-o-transition: bottom .2s linear;
+	z-index: 1;
 }
 
+div#other-lessons.show {
+	bottom: 0;
+}
+
+div#other-lessons:hover {
+	box-shadow: 0px 0px 5px #CCC;
+	border: 2px solid #8A98CC;
+	border-bottom: none;
+}
+
+div#other-lessons a {
+	text-decoration: none;
+}
+
+div#other-lessons h4 {
+	font-size: 18px;
+	color: #555;
+	font-family: helvetica, verdana, arial, sans-serif;
+	font-style: normal;
+	line-height: 22px;
+	margin: 0;
+	margin-top: -3px;
+	margin-bottom: 5px;
+	font-weight: lighter;
+}
+div#other-lessons p {
+	font-size: 15px;
+	color: #777;
+	font-family: helvetica, verdana, arial, sans-serif;
+	font-weight: lighter;
+	font-style: normal;
+	line-height: 22px;
+	margin: 0;
+	margin-bottom: 5px;
+}
+
+div#other-lessons img {
+	float: left;
+	border: 1px solid #ccc;
+}
+
+div#other-lessons span {
+	font-size: 20px;
+	line-height: 77px;
+	margin-left: 15px;
+}
+
+.posts {
+	margin-top: 79px;
+}
+
+.post {
+    position: relative;
+	margin-bottom: 40px;
+}
+.post .post-header-fix {
+	position: absolute;
+	color: #fff;
+	z-index: 99;
+	width: 100%;
+	background: rgba(0, 0, 0, 0.4);
+	border-radius: 5px 5px 0 0;
+	text-shadow: black 1px 0 2px;
+	color: #fff;
+}
+.post .post-header-fix a {
+	text-decoration: none;
+	color: #fff;
+}
 .post h2 {
 	font-family: helvetica, verdana, arial, sans-serif;
 	font-style: normal !important;
 	font-size: 23px !important;
 	font-weight: lighter;
+	text-align: left;
+	color: #fff;
+}
+.post h2 a {	
+	display: block;
+	padding: 10px 20px;
+}
+.post h2 a:hover {
+	opacity: 1;
+}
+.post h2 a span {
+	visibility: hidden;
+	margin-left: 10px;
+}
+.post h2 a:hover span {
+	visibility: visible;
+}
+p.date-comments {
+	padding: 0 20px;
+	margin: 0;
+	font-size: 11px !important;
+	color: #CCC;
+	position: relative;
+	bottom: 15px;
+	height: 10px;
+}
+p.date-comments a {
+	color: #ccc !important;
+}
+
+.post img:nth-of-type(1) {
+	border-radius: 5px;
 }
 .post p {
     font-size: 14px;
@@ -231,6 +428,9 @@ div.date-inner.fixed {
 .post h3, .post h4 {
 	font-family: helvetica, verdana, arial, sans-serif;
 	margin-bottom: 15px;
+}
+.post h3 {
+	line-height: 1.5em;
 }
 .post h4 {
 	font-style: italic;
@@ -244,20 +444,31 @@ div.date-inner.fixed {
 	font-weight: lighter;
 	color: #333;
 }
+.post ol {
+	font-family: helvetica, verdana, arial, sans-serif;
+	font-weight: lighter;
+	color: #333;
+	line-height: 1.7em;
+}
 
 ul.pages {
 	padding: 0;
 	margin-right: 0;
 	margin-left: 0;
-	border-top: 1px dotted #e5e5e5;
-    margin-bottom: 20px;
+	margin-bottom: 30px;
+	position: absolute;
+	top: -77px;
+	width: 230px;
+	background-color: #EEE;
+	margin-top: 27px;
+	border-radius: 5px;
+	color: #999;
 }
 
 ul.pages li {
-	display: block;
+	display: inline;
 	margin-left: 0px;
-	margin-right: 15px;
-	border-bottom: 1px dotted #e5e5e5;
+	margin-right: 0px;
 	width: 100%;
 	height: 25px;
 	line-height: 25px;
@@ -265,14 +476,21 @@ ul.pages li {
 
 ul.pages li a {
 	font-family: helvetica, verdana, arial, sans-serif;
-	color: #666;
 	text-decoration: none;
 	font-size: 12px;
-	color: #999;
+	display: inline;
+	height: 25px;
+	line-height: 26px;
+	margin: 0 5px;
 }
 ul.pages li a:hover {
 	text-decoration: underline;
-	color: #666;
+}
+ul.pages li:first-child a {
+	margin-left: 9px;
+}
+ul.pages li:last-child a {
+	margin-right: 0;
 }
 ul.share-buttons {
 	right: 0;
@@ -280,7 +498,7 @@ ul.share-buttons {
 	padding: 0;
 	margin: 0;
 	width: 100%;
-    margin-top: 15px;
+    margin-top: 1px;
 }
 ul.share-buttons li {
 	display: inline-block;
@@ -303,16 +521,58 @@ iframe.share-quote {
 }
 
 div.author-joel {
-border-top: 1px solid #ddd;
-padding: 5px;
-font-family: helvetica, verdana, arial, sans-serif;
-height: 75px;
-padding-top: 17px;
+	font-family: helvetica, verdana, arial, sans-serif;
+	margin-top: -25px;
 }
-div.author-joel img {
-float: left;
-margin-right: 10px;
-height: 75px
+
+#hiring-container {
+	margin-top: 30px;
+}
+#hiring-container a {
+	width: 166px;
+	display: block;
+	margin: 0 auto;
+	text-decoration: none;
+	color: #444444;
+}
+#hiring-container .buffer-hiring {
+	width: 140px;
+	margin: 0 auto;
+	background-color: #f5f5f5;
+	font-family: Arial,Helvetica,sans-serif;
+	color: #444444;
+	font-size: 11px;
+	padding: 10px;
+	border: 2px solid #E8E8E8;
+}
+#hiring-container a:hover .buffer-hiring {
+	border: 2px solid #ccc;
+}
+#hiring-container .buffer-hiring p {
+	margin: 5px 0;
+}
+#hiring-container .buffer-hiring p.buffer-hiring-cta {
+	text-align: center;
+}
+#hiring-container .buffer-hiring p.buffer-hiring-cta em {
+	top: 5px;
+	border: 1px solid #DF912C;
+	font-size: 11px !important;
+	font-weight: bold;
+	font-style: normal;
+	color: #333 !important;
+	border-radius: 3px;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, .5);
+	background-image: -webkit-gradient(linear,left top,left bottom,from(#FFCF6A),to(#FFA530));
+	background-image: -moz-linear-gradient(top,#FFCF6A,#FFA530);
+	background-image: -o-linear-gradient(top,#FFCF6A,#FFA530);
+	background-image: -ms-linear-gradient(top,#FFCF6A,#FFA530);
+	background-image: linear-gradient(top,#FFCF6A,#FFA530);
+	border-image: initial;
+	position: relative;
+	padding: 2px 5px;
+	font-family: helvetica, verdana, arial, sans-serif;
+	text-decoration: none;
 }
 
 
@@ -352,6 +612,7 @@ div#lessons-list ul li img {
 	float: left;
 	margin-right: 5px;
 	border: 1px solid #666;
+	border-radius: 0;
 }
 div#lessons-list h3 {
 	clear: both;
@@ -359,24 +620,24 @@ div#lessons-list h3 {
 	margin: 0;
 }
 
-form#feedburner-email {
+form.feedburner-email {
     margin: 0;
     margin-top: 0px;
     padding: 0;
 }
-form#feedburner-email p {
+form.feedburner-email p {
     margin-bottom: 10px;
 }
-form#feedburner-email input[type=text] {
-    width:140px;
-    border: 1px solid #CCC;
+form.feedburner-email input[type=text] {
+    width: 136px;
+    border: 1px solid #aaa;
     padding: 5px;
     border-radius: 5px 0 0 5px;
+    font-size: 15px;
 }
-form#feedburner-email button {
+form.feedburner-email button {
     padding: 5px;
-    border: 1px solid 
-    #CCC;
+    border: 1px solid #aaa;
     background: #fff;
     border-radius: 0 5px 5px 0;
     margin-left: 0;
@@ -387,8 +648,134 @@ form#feedburner-email button {
     background-image: -ms-linear-gradient(top,white,#DEDEDE);
     background-image: linear-gradient(top,white,#DEDEDE);
     cursor: pointer;
+    color: #333;
+    margin-right: 0;
+    font-size: 15px;
 }
-	</style>
+form.feedburner-email:hover input[type=text],
+form.feedburner-email:hover button {
+	border-color: #999;
+}
+form.feedburner-email button:hover {
+	color: #000;
+}
+form.feedburner-email.large p {
+	text-align: center;
+}
+form.feedburner-email.large input[type=text] {
+	width: 200px;
+	font-size: 20px;
+}
+form.feedburner-email.large button {
+	font-size: 20px;
+}
+
+.post blockquote {
+	border-left: 3px solid #36C;
+}
+
+p#subscribe-bubble {
+	background-color: #3266CC;
+    color: #fff;
+    font-family: helvetica, verdana, arial, sans-serif;
+    padding: 10px;
+    position: relative;
+    border-radius: 5px;
+    text-shadow: #555 1px 0 2px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: lighter;
+}
+p#subscribe-bubble:after {
+	top: 100%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+p#subscribe-bubble:after {
+	border-top-color: #3366cc;
+	border-width: 10px;
+	left: 50%;
+	margin-left: -10px;
+}
+
+ul#book-slot {
+		padding: 0;
+		margin: 0;
+		border: 1px solid #eee;
+		border-radius: 3px;
+		height: 185px;
+		padding-top: 50px;
+		margin-bottom: 30px;
+	}
+	ul#book-slot li {
+		width: 50%;
+		float: left;
+		display: block;
+	}
+	ul#book-slot li a {
+		display: block;
+		margin: 0 auto;
+		width: 135px;
+		text-align: center;
+		height: 20px;
+		padding-top: 105px;
+		padding-bottom: 10px;
+		border: 1px solid #ccc;
+		border-radius: 3px;
+		background-color: #f5f5f5;
+		color: #333;
+		font-weight: bold;
+		text-shadow: 0 0 1px white;
+	}
+	ul#book-slot li#in-person a {
+		background-image: url(http://joelg.cc/content/JT8K/aHR0cDovL2YuY2wubHkvaXRlbXMvMFcwUTFQM04xbTFhMzcycDI0MlMvY29mZmVlLnBuZw==);
+		background-repeat: no-repeat;
+		background-position: 50% 10px;
+		margin-left: 74px;
+		margin-right: 37px;
+	}
+	ul#book-slot li#skype a {
+		background-image: url(http://joelg.cc/content/JTBp/aHR0cDovL2YuY2wubHkvaXRlbXMvMzkxbDNLM280NzNjMVYwQzNMMDIvc2t5cGUucG5n);
+		background-repeat: no-repeat;
+		background-position: 50% 10px;
+		margin-left: 37px;
+		margin-right: 74px;
+	}
+	ul#book-slot li a:hover {
+		padding-top: 103px;
+		border: 3px solid #3166CC;
+		padding-bottom: 8px;
+		box-shadow: 0 0 10px #3166CC !important;
+		text-decoration: none;
+		background-position: 50% 8px !important;
+	}
+	ul#book-slot li#in-person a:hover {
+		margin-left: 72px;
+		margin-right: 35px;
+	}
+	ul#book-slot li#skype a:hover {
+		margin-left: 35px;
+		margin-right: 72px;
+	}
+
+	div.share-image {
+		margin-top: -20px;
+		margin-bottom: 20px;
+		width: 483px;
+		text-align: right;
+		font-family: helvetica, verdana, arial, sans-serif;
+		font-size: 12px;
+		color: #999;
+	}
+	div.share-image a, div.share-image iframe {
+		float: right;
+		margin-left: 5px !important
+	}
+</style>
 <script type="text/javascript">
 
   var _gaq = _gaq || [];
@@ -403,6 +790,10 @@ form#feedburner-email button {
 
 </script>
 <script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+<!-- start Mixpanel --><script type="text/javascript">(function(e,b){if(!b.__SV){var a,f,i,g;window.mixpanel=b;a=e.createElement("script");a.type="text/javascript";a.async=!0;a.src=("https:"===e.location.protocol?"https:":"http:")+'//cdn.mxpnl.com/libs/mixpanel-2.2.min.js';f=e.getElementsByTagName("script")[0];f.parentNode.insertBefore(a,f);b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==
+typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.increment people.append people.track_charge people.clear_charges people.delete_user".split(" ");for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,
+e,d])};b.__SV=1.2}})(document,window.mixpanel||[]);
+mixpanel.init("1e16477f77fb7544f877832928b0a39f");</script><!-- end Mixpanel -->
   </head>
   <body class='index'>
 	<div id="fb-root"></div>
@@ -413,58 +804,81 @@ form#feedburner-email button {
 	  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=246556122112954";
 	  fjs.parentNode.insertBefore(js, fjs);
 	}(document, 'script', 'facebook-jssdk'));</script>
-<script type="text/javascript">var _kiq = _kiq || [];</script>
-<script type="text/javascript" src="//s3.amazonaws.com/ki.js/20342/3-W.js" async="true"></script>
+	<script type="text/javascript">_ga.trackFacebook();</script>
+	<script type="text/javascript">var _kiq = _kiq || [];</script>
+	<script type="text/javascript" src="//s3.amazonaws.com/ki.js/20342/3-W.js" async="true"></script>
     <div id='frame'>
         <div id="header-anchor">
         	<a id="headline" href="/">
-        		<img src="https://si0.twimg.com/profile_images/2274292341/ge0o5se0bxkg10pxgz5g_normal.png">
+        		<img src="https://si0.twimg.com/profile_images/2274292341/ge0o5se0bxkg10pxgz5g_reasonably_small.png">
         		<h1>Joel Gascoigne</h1>
         		<p>Startups, life, learning and happiness</p>
         	</a>
-            <p class='description'>Hi, I'm <a target="_blank" href="http://twitter.com/joelgascoigne">Joel Gascoigne</a>, the founder of <a target="_blank" href="http://bufferapp.com">Buffer</a>. This is where I share the lessons I've learned along my incredible journey.</p>
+            <p class='description'>I'm Founder &amp; CEO of <a target="_blank" href="http://bufferapp.com">Buffer</a>. This is where I share lessons I'm learning.</p>
         </div>
       <div class='title'>
         <div class='about-me'>
-        <form id="feedburner-email" action="http://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open('http://feedburner.google.com/fb/a/mailverify?uri=joelis', 'popupwindow', 'scrollbars=yes,width=550,height=520');return true"><p><input type="text" placeholder="Subscribe via Email" name="email"/><input type="hidden" value="joelis" name="uri"/><input type="hidden" name="loc" value="en_US"/><button type="submit">Sign up</button></p></form>
+        <form class="feedburner-email" action="http://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open('http://feedburner.google.com/fb/a/mailverify?uri=joelis', 'popupwindow', 'scrollbars=yes,width=550,height=520');return true">
+        	<p id="subscribe-bubble">Join <strong>3,250</strong> readers</p>
+			<p id="subscribe-options"><input type="text" placeholder="Your Email" name="email"/><input type="hidden" value="joelis" name="uri"/><input type="hidden" name="loc" value="en_US"/><button type="submit">Subscribe</button></p></form>
       <ul class='subscribe-buttons'>
-          <li style="margin-bottom: 10px;"><a class="rss" target="_blank" href="http://feeds.feedburner.com/joelis" rel="alternate" type="application/rss+xml"><i></i>Subscribe with RSS</a><a class="rss-count" target="_blank" href="http://feeds.feedburner.com/joelis" rel="alternate" type="application/rss+xml"><i></i>820</a></li>
+          <li style="margin-bottom: 15px;font-family: helvetica, verdana, arial, sans-serif;color: #999;font-weight: lighter;font-size: 12px;">or if you prefer: <a class="rss" target="_blank" href="http://feeds.feedburner.com/joelis" rel="alternate" type="application/rss+xml"><i></i>Subscribe with RSS</a></li>
+          <li style="
+    font-family: helvetica, verdana, arial, sans-serif;
+    color: #555;
+    font-weight: lighter;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    padding-top: 10px;
+"><a href="/lessons">Check out all 89 articles →</a><br><a href="/startup-help">Book startup help office hours →</a></li>
+          <li style="
+    font-family: helvetica, verdana, arial, sans-serif;
+    color: #555;
+    font-weight: lighter;
+    margin-bottom: 10px;
+    margin: 0 auto;
+    margin-bottom: 10px;
+">Follow me and say hello:</li>
       	<li><a href="https://twitter.com/joelgascoigne" class="twitter-follow-button" data-show-count="true" data-lang="en">Follow @joelgascoigne</a>
       	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></li>
-      	<li><div class="fb-subscribe" data-href="https://www.facebook.com/joelg" data-show-faces="true" data-width="230"></div></li>
+      	<li><div class="fb-follow" data-href="https://www.facebook.com/joelg" data-layout="button_count" data-show-faces="false" data-width="100"></div> <a href="https://angel.co/joel?follow=1&type=User&id=45224"></a><script src="https://angel.co/javascripts/embed.js" type="text/javascript"></script></li>
       </ul>
-      <ul class="pages">
-            <li><a href="/lessons">lessons summary</a></li>
-            <li><a href="/startup-help">help with your startup</a></li>
-            <li><a href="/about">more about me</a></li>
-        </ul>
-      <div id="carbonads-container"><div class="carbonad" style="margin: 0 auto;"><div id="azcarbon"></div><script type="text/javascript">var z = document.createElement("script"); z.type = "text/javascript"; z.async = true; z.src = "http://engine.carbonads.com/z/13081/azcarbon_2_1_0_VERT"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(z, s);</script></div></div>
-    </div>
       </div>
+  </div>
 	
       <div class='posts'>
-		 <div class='hr'></div>
 		{block:Posts}
 		{block:Text}
 	        <div class='post'>
             <div class='date'>
             <div class='date-inner'>
-                {block:Date}{DayOfMonth}{DayOfMonthSuffix} {Month} {Year} &bull; {/block:Date}<a href="{Permalink}#disqus_thread" class="dsq-comment-count">Comments</a>
             	<ul class="share-buttons">
             		<li><a href="http://twitter.com/share" class="twitter-share-button" data-text="{Title}" data-url="{Permalink}" data-count="vertical" data-via="joelgascoigne">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script></li>
             		<li><a href="http://bufferapp.com/add" class="buffer-add-button" data-text="{Title}" data-url="{Permalink}" data-count="vertical" data-via="joelgascoigne">Buffer</a><script type="text/javascript" src="http://static.bufferapp.com/js/button.js"></script></li>
             		<li style="position: relative; bottom: 3px;"><div class="fb-like" data-href="{Permalink}" data-send="false" data-layout="box_count" data-width="55" data-show-faces="false"></div></li>
-            		<li style="display: inline-block; margin-left: -6px;"><div class="google-share-button" style="position: relative; bottom: 1px;"><g:plusone size="tall" href="{Permalink}"></g:plusone></div>
+            		<li style="display: inline-block; margin-left: -6px; position: relative; top: 1px;"><a data-pocket-label="pocket" data-pocket-count="vertical" data-save-url="{Permalink}" class="pocket-btn" data-lang="en"></a>
+<script type="text/javascript">!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script></li>
             	</ul>
             </div>
+			<div id="other-lessons">
+				<a id="other-lessons-link" href="/lessons">
+					<h4>Check out all 89 articles</h4>
+					<p>I hope these lessons learned can accelerate your startup success</p>
+					<div class="go">
+						<img src="http://farm4.staticflickr.com/3132/2385084598_86ea99e36a_s.jpg" /><span>See lessons »</span>
+					</div>
+				</a>
+			</div>
             </div>
-<div class="post-header-fix">
+			<div class="post-header-fix">
 			{block:Title}
-	          <h2>
-	            <a href="{Permalink}">{Title}</a>
-	          </h2>
+				<h2{block:PermalinkPage} style="padding: 10px 20px;"{/block:PermalinkPage}>
+					{block:IndexPage}<a href="{Permalink}">{Title}<span>&rarr;</span></a>{/block:IndexPage}
+					{block:PermalinkPage}{Title}{/block:PermalinkPage}
+				</h2>
+				<p class="date-comments">{block:Date}Written on {DayOfMonth}{DayOfMonthSuffix} {Month}, {Year} &bull; {/block:Date}<a href="{Permalink}#disqus_thread" class="dsq-comment-count">Comments</a></p>
 			{/block:Title}
-</div>
+			</div>
 	          {Body}
 	          <div class='meta'>
 				{block:HasTags} 
@@ -485,11 +899,15 @@ form#feedburner-email button {
 	        </div>
             {block:PermalinkPage}
             <div class='author-joel'>
-                <img src="https://si0.twimg.com/profile_images/2274292341/ge0o5se0bxkg10pxgz5g_reasonably_small.png" />
-                <div class='author-joel-bio'>Hi, I'm <a target="_blank" rel="author" href="http://joel.is/about">Joel</a>. I hope you enjoyed the post. I'm the Founder of <a target="_blank" href="http://bufferapp.com">Buffer</a>, a more effective way to post to Twitter and Facebook. I've found sharing my thoughts to be a great way to clear my mind, and to learn from others who comment. I'd love to hear from you in the comments.</div>
+					<p style="float: left;
+					margin-right: 10px;
+					margin-top: 5px;
+					margin-left: 0;">Did you enjoy this article? Get updates:<form class="feedburner-email" style="float: right;" action="http://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open('http://feedburner.google.com/fb/a/mailverify?uri=joelis', 'popupwindow', 'scrollbars=yes,width=550,height=520');return true"><input type="text" placeholder="Your Email" name="email"/><input type="hidden" value="joelis" name="uri"/><input type="hidden" name="loc" value="en_US"/><button type="submit">Subscribe</button>
+						</form>
+					</p>
+				</div>
             </div>
             {/block:PermalinkPage}
-	        <div class='hr' style="margin-top: 0px;"></div>
 		{/block:Text}
 		{block:Photo}
 			<div class="post">
@@ -761,5 +1179,6 @@ var disqus_shortname = 'joelis';
         <a href='http://alasdairmonk.com' target="_blank">Alasdair Monk</a>
       </div>
     </div>
+    <script type="text/javascript" src="//assets.pinterest.com/js/pinit.js"></script>
   </body>
 </html>
